@@ -1,10 +1,10 @@
 <template>
-  <div class="container" @click="clickHandle('test click', $event)">
+  <div class="container">
     <div class="weui-search-bar__box">
       <icon class="weui-icon-search_in-box" type="search" size="20"></icon>
       <input type="text" class="weui-search-bar__input" placeholder="请输入片名、主演或导演" bindinput="bindKeyInput" />
     </div>
-    
+    <swiper :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration"/>
   </div>
 </template>
 
@@ -14,6 +14,10 @@ import swiper from "@/components/swiper"
 export default {
   data() {
     return {
+      indicatorDots: false,
+      autoplay: false,
+      interval: 5000,
+      duration: 1000,
       imgUrls: [
       'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
@@ -79,7 +83,9 @@ export default {
     };
   },
 
-  components: {},
+  components: {
+    swiper
+  },
 
   methods: {
     bindViewTap() {
@@ -111,4 +117,7 @@ export default {
 </script>
 
 <style scoped>
+.weui-icon-search_in-box {
+  left: 0;top: 10rpx;
+}
 </style>
