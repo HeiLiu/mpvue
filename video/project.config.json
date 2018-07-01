@@ -10,7 +10,7 @@
 	"miniprogramRoot": "./dist/",
 	"compileType": "miniprogram",
 	"appid": "wx6c90c952b6481455",
-	"projectname": "tencent_video",
+	"projectname": "video",
 	"condition": {
 		"search": {
 			"current": -1,
