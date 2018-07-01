@@ -1,38 +1,38 @@
 <template>
   <div class="container">
+    <div class="header">
+
+    
     <div class="weui-search-bar__box">
       <icon class="weui-icon-search_in-box" type="search" size="20"></icon>
       <input type="text" class="weui-search-bar__input" placeholder="请输入片名、主演或导演" bindinput="bindKeyInput" />
     </div>
     <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-      <block v-for="(item, index) in imgUrls" :key="index">
+      <block v-for="(item, index) in banners" :key="index">
         <swiper-item>
-          <image :src="item" mode="aspectFill" class="slide-image" />
+          <image :src="item.imgUrl" mode="aspectFill" class="slide-image" />
           <view class="image_info">
-          <text>更新至11集</text>
+          <text>{{item.detail}}</text>
           </view>
-          <text class="image_title">【创造101】22人离开王嘉尔神配合</text>
+          <text class="image_title">{{item.title}}</text>
         </swiper-item>
       </block>
-    </swiper>    
+    </swiper>
+     </div>   
   </div>
 </template>
 
 <script>
-import card from "@/components/card";
-import swipers from "@/components/swiper";
+import {getData} from '@/api/getData'
+import Fly from '@/utils/fly'
 export default {
   data() {
     return {
       indicatorDots: false,
-      autoplay: false,
+      autoplay: true,
       interval: 5000,
       duration: 1000,
-      imgUrls: [
-        "http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg",
-        "http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg",
-        "http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg"
-      ],
+      banners: [],
       sections: [
         {
           section_title: "创造101 人气学长助阵公演",
@@ -103,34 +103,20 @@ export default {
   },
 
   components: {
-    swipers
   },
 
   methods: {
-    bindViewTap() {
-      const url = "../logs/main";
-      wx.navigateTo({ url });
-    },
-    getUserInfo() {
-      // 调用登录接口
-      wx.login({
-        success: () => {
-          wx.getUserInfo({
-            success: res => {
-              this.userInfo = res.userInfo;
-            }
-          });
-        }
-      });
-    },
-    clickHandle(msg, ev) {
-      console.log("clickHandle:", msg, ev);
-    }
   },
 
   created() {
     // 调用应用实例的方法获取全局数据
-    this.getUserInfo();
+  },
+  mounted (){
+   Fly.get('/banners').then((res)=>{
+     this.banners = res.data.data.banners
+     console.log(res)
+   console.log(this.banners)
+   });
   }
 };
 </script>
@@ -139,5 +125,47 @@ export default {
 .weui-icon-search_in-box {
   left: 0;
   top: 10rpx;
+}
+.header{
+  padding: 0 30rpx;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  /* background: #f4f6f8; */
+  height: 570rpx;
+   background: linear-gradient(#fff, #f4f6f8);
+}
+.swiper {
+  margin-top: 20rpx;
+  box-sizing: border-box;
+  width: 100%;
+  height: 500rpx;
+}
+.slide-image {
+  position: relative;
+  box-sizing: border-box;
+  /* background: red; */
+  display: block;
+  width: 100%;
+  height: 400rpx;
+}
+.swiper .image_title {
+  font-size: 30rpx;
+  display: block;
+  padding: 20rpx 0;
+}
+.swiper .image_info {
+  font-size: 24rpx;
+  width: auto;
+  height: 32rpx;
+  line-height: 32rpx;
+  position: absolute;
+  bottom: 115rpx;
+  right: 10rpx;
+  background-color: red;
+  background: rgba(224, 200, 200, 0.7);
+  color: #f4f6f8;
 }
 </style>

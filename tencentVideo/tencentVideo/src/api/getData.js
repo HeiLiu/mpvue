@@ -1,10 +1,8 @@
-Vue.prototype.getList = function () {
-    wx.showLoading({
-      title: '加载中',
-  })
-  this.$http.get('/test').then((res)=>{
-      wx.hideLoading();
-    }).catch((e)=>{
-    console.log(e)
-  })
+import fly from '@/utils/fly'
+
+export function getData(url) {
+    return fly.get(url).then((res) => {
+        // console.log(res.data.data);
+        return res.data.data
+    })
 }
