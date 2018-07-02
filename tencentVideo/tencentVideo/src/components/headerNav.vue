@@ -11,54 +11,68 @@
 
 <script>
 export default {
-    name:"header-nav",
-    data(){
-        return {
-            curIndex: 0,
-            navItems: [{
-            name: '王者荣耀',
-            id: 'wangzhe'
-            },{
-            name: '快看',
-            id: 'kuaikan'
-            },{
-            name: '神剪辑',
-            id: 'shenjianji'
-            },{
-            name: '搞笑',
-            id: 'gaoxiao'
-            },{
-            name: '娱乐',
-            id: 'yule'
-            },{
-            name: '新闻',
-            id: 'xinwen'
-            }]
+  name: "header-nav",
+  data() {
+    return {
+      curIndex: 0,
+      navItems: [
+        {
+          name: "王者荣耀",
+          id: "wangzhe"
+        },{
+          name: "快看",
+          id: "kuaikan"
+        },{
+          name: "神剪辑",
+          id: "shenjianji"
+        },{
+          name: "搞笑",
+          id: "gaoxiao"
+        },{
+          name: "娱乐",
+          id: "yule"
+        },{
+          name: "新闻",
+          id: "xinwen"
+        },{
+          name: "神剪辑",
+          id: "shenjianji"
+        },{
+          name: "搞笑",
+          id: "gaoxiao"
+        },{
+          name: "娱乐",
+          id: "yule"
+        },{
+          name: "实事",
+          id: "xinwen"
         }
-    },
-    props: {
-        category: {
-            type: Array,
-            default: []
-        }
-    },
-    methods: {
-        switchNav(e){
-            console.log(e);
-            var index = e.currentTarget.dataset.index;
-            console.log(index);
-            this.curIndex = index ? index : 0
-        }
-    },
-    mounted(){
-        console.log(this.category);
-    },
-    computed: {
-        getCategory:function(){
-            return this.category
-        }
+      ]
+    };
+  },
+  props: {
+    category: {
+      type: Array,
+      default: []
     }
-}
+  },
+  methods: {
+    switchNav(e) {
+      console.log(e);
+      var index = e.currentTarget.dataset.index;
+      console.log(index);
+      this.curIndex = index ? index : 0;
+    }
+  },
+  mounted() {
+    console.log(this.category);
+  },
+  computed: {
+    getCategory: function() {
+      return this.category;
+    }
+  }
+};
 </script>
 
 <style scoped>

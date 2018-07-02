@@ -1,30 +1,29 @@
 <template>
   <div class="container">
     <div class="header">
-
-    
-    <div class="weui-search-bar__box">
-      <icon class="weui-icon-search_in-box" type="search" size="20"></icon>
-      <input type="text" class="weui-search-bar__input" placeholder="请输入片名、主演或导演" bindinput="bindKeyInput" />
-    </div>
-    <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-      <block v-for="(item, index) in banners" :key="index">
-        <swiper-item>
-          <image :src="item.imgUrl" mode="aspectFill" class="slide-image" />
-          <view class="image_info">
-          <text>{{item.detail}}</text>
-          </view>
-          <text class="image_title">{{item.title}}</text>
-        </swiper-item>
-      </block>
-    </swiper>
-     </div>   
+      <div class="weui-search-bar__box">
+        <icon class="weui-icon-search_in-box" type="search" size="20"></icon>
+        <input type="text" class="weui-search-bar__input" placeholder="请输入片名、主演或导演" bindinput="bindKeyInput" />
+      </div>
+      <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+        <block v-for="(item, index) in banners" :key="index">
+          <swiper-item>
+            <image :src="item.imgUrl" mode="aspectFill" class="slide-image" />
+            <view class="image_info">
+            <text>{{item.detail}}</text>
+            </view> 
+            <text class="image_title">{{item.title}}</text>
+          </swiper-item>
+        </block>
+      </swiper>
+    </div>   
+    <child :sections="sections"/>
   </div>
 </template>
 
 <script>
-import {getData} from '@/api/getData'
 import Fly from '@/utils/fly'
+import child from '@/components/section'
 export default {
   data() {
     return {
@@ -103,6 +102,7 @@ export default {
   },
 
   components: {
+    child: child
   },
 
   methods: {
