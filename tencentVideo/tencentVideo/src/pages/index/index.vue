@@ -44,6 +44,9 @@ export default {
     playVideo(val){
       console.log(val);
       console.log('123')
+      wx.navigateTo({
+        url: '../player/main'
+      })
     },
     refresh(val){
       console.log('负组件调用')

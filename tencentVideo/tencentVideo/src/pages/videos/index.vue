@@ -1,61 +1,75 @@
 <template>
     <div class="container">
-       <header-nav :data="category"/>
+       <header-nav :navItems="category"/>
+       <scroll-section :sections="sections"/>
     </div>
 </template>
 
 <script>
-import HeaderNav from '@/components/headerNav'
+import HeaderNav from "@/components/headerNav";
+import ScrollSection from '@/components/scrollSection'
+import Fly from '@/utils/fly'
 export default {
-    components: {
-        HeaderNav
-    },
-    data(){
-        return {
-        category: [{
-          name: '王者荣耀',
-          id: '王者荣耀'
+  components: {
+    HeaderNav,
+    ScrollSection
+  },
+  data() {
+    return {
+      category: [
+        {
+          name: "王者荣耀",
+          id: "wangzhe"
         },
         {
-          name: '快看',
-          id: 'kuaikan'
+          name: "快看",
+          id: "kuaikan"
         },
         {
-          name: '神剪辑',
-          id: 'shenjianji'
+          name: "神剪辑",
+          id: "shenjianji"
         },
         {
-          name: '搞笑',
-          id: 'gaoxiao'
+          name: "搞笑",
+          id: "gaoxiao"
         },
         {
-          name: '娱乐',
-          id: 'yule'
+          name: "娱乐",
+          id: "yule"
         },
         {
-          name: '新闻',
-          id: 'xinwen'
+          name: "新闻",
+          id: "xinwen"
         },
         {
-          name: '神剪辑',
-          id: 'shenjianji'
+          name: "神剪辑",
+          id: "shenjianji"
         },
         {
-          name: '搞笑',
-          id: 'gaoxiao'
+          name: "搞笑",
+          id: "gaoxiao"
         },
         {
-          name: '娱乐',
-          id: 'yule'
+          name: "娱乐",
+          id: "yule"
         },
         {
-          name: '新闻',
-          id: 'xinwen'
+          name: "新闻",
+          id: "xinwen"
         }
-      ]
-        }
-    }
-}
+      ],
+      sections: []
+    };
+  },
+  mounted() {
+    Fly.get('/video/sections')
+      .then(res => {
+        this.sections = res.data.sections
+        console.log(res.data.data)
+        console.log(this.sections);
+      })
+  }
+};
 </script>
 
 <style>

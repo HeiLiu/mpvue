@@ -6,7 +6,6 @@
         </view>
         <view class="line"></view>
     </scroll-view>
-      <!-- :data-id="item.id" :data-index="index" @click="switchCategory" :class="cate_list [curIndex===index?'on':'']" -->
 </template>
 
 <script>
@@ -15,46 +14,10 @@ export default {
   data() {
     return {
       curIndex: 0,
-      navItems: [
-        {
-          name: "王者荣耀",
-          id: "wangzhe"
-        },{
-          name: "快看",
-          id: "kuaikan"
-        },{
-          name: "神剪辑",
-          id: "shenjianji"
-        },{
-          name: "搞笑",
-          id: "gaoxiao"
-        },{
-          name: "娱乐",
-          id: "yule"
-        },{
-          name: "新闻",
-          id: "xinwen"
-        },{
-          name: "神剪辑",
-          id: "shenjianji"
-        },{
-          name: "搞笑",
-          id: "gaoxiao"
-        },{
-          name: "娱乐",
-          id: "yule"
-        },{
-          name: "实事",
-          id: "xinwen"
-        }
-      ]
     };
   },
   props: {
-    category: {
-      type: Array,
-      default: []
-    }
+      navItems: Array
   },
   methods: {
     switchNav(e) {
@@ -65,12 +28,10 @@ export default {
     }
   },
   mounted() {
-    console.log(this.category);
+    console.log(this.navItems);
   },
   computed: {
-    getCategory: function() {
-      return this.category;
-    }
+    
   }
 };
 </script>
