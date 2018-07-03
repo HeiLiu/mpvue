@@ -17,13 +17,13 @@
         </block>
       </swiper>
     </div>   
-    <child :sections="sections"/>
+    <video-section :sections="sections" @playVideo="playVideo" @refresh="refresh"/>
   </div>
 </template>
 
 <script>
 import Fly from '@/utils/fly'
-import child from '@/components/section'
+import VideoSection from '@/components/section'
 export default {
   data() {
     return {
@@ -32,91 +32,39 @@ export default {
       interval: 5000,
       duration: 1000,
       banners: [],
-      sections: [
-        {
-          section_title: "创造101 人气学长助阵公演",
-          posterImgUrl: "http://puui.qpic.cn/tv/0/25725891_1080607/0",
-          posterDetail: "06-09",
-          posterTitle: "🍵六首原创唱跳超过瘾",
-          videos: [
-            {
-              imgUrl: "http://puui.qpic.cn/tv/0/25725670_498280/0",
-              videoInfo: "06-08",
-              videoTitle: "奔跑吧2·要哭了",
-              videoContent: "陈赫含泪不忍撕邓超名牌"
-            },
-            {
-              imgUrl: "http://puui.qpic.cn/tv/0/25642166_498280/0",
-              videoInfo: "更新至22集",
-              videoTitle: "如果, 爱",
-              videoContent: "我养你💓张柏芝最深情表白"
-            },
-            {
-              imgUrl: "http://puui.qpic.cn/tv/0/25731749_498280/0",
-              videoInfo: "06-08",
-              videoTitle: "高能少年团互怼cp",
-              videoContent: "张一山杨紫互相diss年纪大"
-            },
-            {
-              imgUrl: "http://puui.qpic.cn/tv/0/25730925_498280/0",
-              videoInfo: "",
-              videoTitle: "战神纪·独播",
-              videoContent: "陈伟霆林允上演传奇爱情"
-            }
-          ]
-        },
-        {
-          section_title: "周末好心情，快快嗨起来(●'◡'●)✌",
-          posterImgUrl: "http://puui.qpic.cn/tv/0/25738125_498280/0",
-          posterDetail: "06-09",
-          posterTitle: "爱国者[首播 会员提前看]",
-          videos: [
-            {
-              imgUrl: "http://puui.qpic.cn/tv/0/25725670_498280/0",
-              videoInfo: "06-08",
-              videoTitle: "奔跑吧2·要哭了",
-              videoContent: "陈赫含泪不忍撕邓超名牌"
-            },
-            {
-              imgUrl: "http://puui.qpic.cn/tv/0/25642166_498280/0",
-              videoInfo: "更新至22集",
-              videoTitle: "如果, 爱",
-              videoContent: "我养你💓张柏芝最深情表白"
-            },
-            {
-              imgUrl: "http://puui.qpic.cn/tv/0/25731749_498280/0",
-              videoInfo: "06-08",
-              videoTitle: "高能少年团互怼cp",
-              videoContent: "张一山杨紫互相diss年纪大"
-            },
-            {
-              imgUrl: "http://puui.qpic.cn/tv/0/25730925_498280/0",
-              videoInfo: "",
-              videoTitle: "战神纪·独播",
-              videoContent: "陈伟霆林允上演传奇爱情"
-            }
-          ]
-        }
-      ]
+      sections: []
     };
   },
 
   components: {
-    child: child
+    VideoSection
   },
 
   methods: {
+    playVideo(val){
+      console.log(val);
+      console.log('123')
+    },
+    refresh(val){
+      console.log('负组件调用')
+      console.log(val);
+    }
   },
 
   created() {
     // 调用应用实例的方法获取全局数据
+    Fly.get('/banners').then((res)=>{
+     this.banners = res.data.data.banners
+    //  console.log(res)
+  //  console.log(this.banners)
+   });
+   Fly.get('/index/sections').then(res=>{
+     this.sections = res.data.sections;
+    //  console.log(this.sections)
+   })
   },
   mounted (){
-   Fly.get('/banners').then((res)=>{
-     this.banners = res.data.data.banners
-     console.log(res)
-   console.log(this.banners)
-   });
+   
   }
 };
 </script>

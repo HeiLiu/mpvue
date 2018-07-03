@@ -8,8 +8,8 @@
             <text class="poster_title">{{section.posterTitle}}</text>
             </view>
             <view class="section_videos">
-            <block v-for="(video, wa) in section.videos" :key="wa">
-                <view class="video" @click.native="playClick">
+            <block v-for="(video, id) in section.videos" :key="id">
+                <view class="video" @click="handleClick">
                 <image mode="aspectFill" :src="video.imgUrl"/>
                 <view class="detail_info">{{video.videoInfo}}</view>
                 <view class="video_detail">
@@ -19,9 +19,9 @@
                 </view>
             </block>
             <view class="line"></view>
-            <view class="section_ft" bindtap="refreshTap">
+            <view class="section_ft"  @click="handleRefresh">
                 <image class="refresh" src="/static/images/icon/refresh.png"/>
-                <text class="refresh_info smallFont" @click="refresh">换一批试试</text>
+                <text class="refresh_info smallFont">换一批试试</text>
             </view>
             </view>
         </view>
@@ -39,12 +39,19 @@ export default {
         sections: Array
     },
     methods: {
-        refresh(){
-            console.log('刷新？不不不，还没做呢');
+      handleClick(val){
+        // 点击预览图实现跳转到播放页面，播放相应的视频，并且展示相关的信息
+        // 关键： 怎么得到相关的视频信息 
+        this.$emit('playVideo', val);
+      },
+        handleRefresh(val){
+            console.log('刷新？不不不，还没做呢,该功能实现按一下刷新一栏数据，就是换一批啦');
+            this.$emit('refresh', val)
         }
     },
     mounted(){
         console.log(this.sections)
+        this.$emit('refresh','hahahah');
     }
 
 }
@@ -76,6 +83,7 @@ export default {
   width: 100%;
   padding-top: 10rpx;
   text-align: center;
+  cursor: pointer;
 }
 .video_content{
   overflow: hidden;

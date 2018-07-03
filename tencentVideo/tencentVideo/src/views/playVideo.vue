@@ -1,10 +1,9 @@
 <template>
     <div>
-    <!-- 視頻播放頁面组件 -->
-    <!-- <view class="section tc">
-    <video id="myVideo" src="{{playInfo.url}}" :danmu-list="danmuList" enable-danmu danmu-btn controls></video>
+        <view class="section tc">
+        <my-video id="myVideo" :src="src" enable-danmu danmu-btn controls @click="to14"/>
         <view class="weui-cell rmTopLine">
-            <view class="weui-cell__bd video_title">{{playInfo.title}}</view>
+            <view class="weui-cell__bd video_title"> 极限挑战 </view>
             <view class="weui-cell__ft weui-cell__ft_in-access midFont"> 简介 </view>
         </view>
         <view class="weui-cell video_detail rmTopLine">
@@ -12,25 +11,49 @@
         </view>
         <view class="operation">
         <view class="clarity">高清
-            <image class="arrow" src="/static/assets/icon/arrow.png"/>
+            <image class="arrow" src="../../static/images/icon/arrow.png"/>
         </view>
-        <image class="share" src="/static/assets/icon/share.png"/>
-        <image class="heart" src="/static/assets/icon/heart.png"/>
+        <image class="share" src="../../static/images/icon/share.png"/>
+        <image class="heart" src="../../static/images/icon/heart.png"/>
         </view>
         <view class="weui-cell zhuanji">
             <view class="weui-cell__bd ">专辑列表</view>
             <view class="weui-cell__ft weui-cell__ft_in-access midFont"> 5 </view>
         </view>
-    </view> -->
+    </view>
     </div>
 </template>
 
 <script>
-export default {};
+import Video from '@/components/videoPlay'
+export default {
+    data(){
+        return {
+            src: 'http://p9utic4op.bkt.clouddn.com/o0026omczct%20%282%29.mp4'
+        }
+    },
+    props: {
+        url: String,
+        DamuList: Array,
+        playInfo: Object
+    },
+    components: {
+        MyVideo: Video
+    },
+    methods: {
+        to14(e){
+            console.log('tiaoa');
+            this.videoCtx.seek(35)
+            console.log(e.detail.value)
+        }
+    },
+    mounted() {
+        this.videoCtx=wx.createVideoContext('myVideo');
+    }
+};
 </script>
 
 <style scoped>
-/* pages/video_detail/video_detail.wxss */
 .section{
     width: 100%;
     height: 100vh;
