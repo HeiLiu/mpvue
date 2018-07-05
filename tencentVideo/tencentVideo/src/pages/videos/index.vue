@@ -1,7 +1,8 @@
 <template>
     <div class="container">
-       <header-nav :navItems="category"/>
-       <scroll-section :sections="sections"/>
+       <header-nav :navItems="category" @switchNav="switchNav"/>
+       <scroll-section :sections="sections" v-if="true"/>
+       
     </div>
 </template>
 
@@ -62,12 +63,26 @@ export default {
     };
   },
   mounted() {
-    Fly.get('/video/sections')
+    Fly.get('/video/wangzhe')
+      .then(res => {
+        this.sections = res.data.sections
+        // console.log(res.data.data)
+        // console.log(this.sections);
+      })
+  },
+  methods: {
+    switchNav(id){
+      // 获取切换以后的菜单项
+      // console.log('负组件顺丰')
+      console.log(id);
+      // 拼接url
+      Fly.get(`'/video/${id}`)
       .then(res => {
         this.sections = res.data.sections
         console.log(res.data.data)
         console.log(this.sections);
       })
+    }
   }
 };
 </script>

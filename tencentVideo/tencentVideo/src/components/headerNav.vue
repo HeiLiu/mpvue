@@ -21,10 +21,14 @@ export default {
   },
   methods: {
     switchNav(e) {
-      console.log(e);
+      console.log(e.target);
       var index = e.currentTarget.dataset.index;
       console.log(index);
       this.curIndex = index ? index : 0;
+      let id = this.navItems[index].id
+      this.$emit('switchNav', id)
+      
+      // this.$emit('switchNav', )
     }
   },
   mounted() {

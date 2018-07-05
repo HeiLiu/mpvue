@@ -18,7 +18,6 @@ export default {
         if(this.playInfo.videoTitle.indexOf('】')>=0){
             this.playInfo.videoTitle = this.playInfo.videoTitle.split('】')[1]
         }
-        // console.log(JSON.stringify(options.playInfo));
     }
 }
 </script>
