@@ -7,12 +7,12 @@
       </div>
       <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
         <block v-for="(item, index) in banners" :key="index">
-          <swiper-item>
-            <image :src="item.imgUrl" mode="aspectFill" class="slide-image" />
-            <view class="image_info">
-            <text>{{item.detail}}</text>
-            </view> 
-            <text class="image_title">{{item.title}}</text>
+          <swiper-item  @click="playBanners(item)">
+            <img :src="item.imgUrl" mode="aspectFill" class="slide-image" />
+            <div class="image_info">
+            <text>{{item.videoInfo}}</text>
+            </div> 
+            <text class="image_title">{{item.videoTitle}}</text>
           </swiper-item>
         </block>
       </swiper>
@@ -41,11 +41,20 @@ export default {
   },
 
   methods: {
+    playBanners(banner){
+      console.log('zhege..')
+      
+      wx.setStorageSync('playInfo', banner);
+      wx.navigateTo({
+        url: `../player/main`
+      })
+    },
     playVideo(val){
       console.log('父组件输出')
       console.log(val);
+      wx.setStorageSync('playInfo', val);
       wx.navigateTo({
-        url: '../player/main'
+        url: `../player/main`
       })
     },
     refresh(val){
@@ -57,8 +66,9 @@ export default {
   created() {
     // 调用应用实例的方法获取全局数据
     Fly.get('/banners').then((res)=>{
-     this.banners = res.data.data.banners
-    //  console.log(res)
+     this.banners = res.data.banners
+    console.log(res.data.banners)
+    //  console.log(this.banners)
   //  console.log(this.banners)
    });
    Fly.get('/index/sections').then(res=>{

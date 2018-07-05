@@ -1,26 +1,26 @@
 <template>
     <div>
-        <view class="section tc">
-        <my-video id="myVideo" :src="src" enable-danmu danmu-btn controls @click="to14"/>
-        <view class="weui-cell rmTopLine">
-            <view class="weui-cell__bd video_title"> 极限挑战 </view>
-            <view class="weui-cell__ft weui-cell__ft_in-access midFont"> 简介 </view>
-        </view>
-        <view class="weui-cell video_detail rmTopLine">
-            <view class="weui-cell__bd video_detail"><text>7.4分 </text>·<text style="color: orange;"> 独播 </text>·<text> 都市 </text>·<text> 13.3万 </text></view>
-        </view>
-        <view class="operation">
-        <view class="clarity">高清
-            <image class="arrow" src="../../static/images/icon/arrow.png"/>
-        </view>
-        <image class="share" src="../../static/images/icon/share.png"/>
-        <image class="heart" src="../../static/images/icon/heart.png"/>
-        </view>
-        <view class="weui-cell zhuanji">
-            <view class="weui-cell__bd ">专辑列表</view>
-            <view class="weui-cell__ft weui-cell__ft_in-access midFont"> 5 </view>
-        </view>
-    </view>
+        <div class="section tc">
+        <my-video id="myVideo" :src="playInfo.videoUrl" enable-danmu danmu-btn controls @click="to14"/>
+        <div class="weui-cell rmTopLine">
+            <div class="weui-cell__bd video_title"> {{playInfo.videoTitle}} </div>
+            <div class="weui-cell__ft weui-cell__ft_in-access midFont"> 简介 </div>
+        </div>
+        <div class="weui-cell video_detail rmTopLine">
+            <div class="weui-cell__bd video_detail"><text>7.4分 </text>·<text style="color: orange;"> 独播 </text>·<text> 都市 </text>·<text> 13.3万 </text></div>
+        </div>
+        <div class="operation">
+        <div class="clarity">高清
+            <img class="arrow" src="../../static/images/icon/arrow.png"/>
+        </div>
+        <img class="share" src="../../static/images/icon/share.png"/>
+        <img class="heart" src="../../static/images/icon/heart.png"/>
+        </div>
+        <div class="weui-cell zhuanji">
+            <div class="weui-cell__bd ">专辑列表</div>
+            <div class="weui-cell__ft weui-cell__ft_in-access midFont"> 5 </div>
+        </div>
+    </div>
     </div>
 </template>
 
@@ -42,9 +42,10 @@ export default {
     },
     methods: {
         to14(e){
+            //  实现一下发弹幕
             console.log('tiaoa');
             this.videoCtx.seek(35)
-            console.log(e.detail.value)
+            // console.log(e.detail.value)
         }
     },
     mounted() {
