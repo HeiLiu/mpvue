@@ -9,7 +9,7 @@
             </view>
             <view class="section_videos">
             <block v-for="(video, id) in section.videos" :key="id">
-                <view class="video" @click="handleClick">
+                <view class="video" @click="handleClick(video)">
                 <image mode="aspectFill" :src="video.imgUrl"/>
                 <view class="detail_info">{{video.videoInfo}}</view>
                 <view class="video_detail">
@@ -42,6 +42,8 @@ export default {
       handleClick(val){
         // 点击预览图实现跳转到播放页面，播放相应的视频，并且展示相关的信息
         // 关键： 怎么得到相关的视频信息 
+        console.log('子组件输出');
+        console.log(val)
         this.$emit('playVideo', val);
       },
         handleRefresh(val){

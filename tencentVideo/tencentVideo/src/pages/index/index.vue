@@ -33,7 +33,7 @@ export default {
       duration: 1000,
       banners: [],
       sections: []
-    };
+    }
   },
 
   components: {
@@ -42,8 +42,8 @@ export default {
 
   methods: {
     playVideo(val){
+      console.log('父组件输出')
       console.log(val);
-      console.log('123')
       wx.navigateTo({
         url: '../player/main'
       })
