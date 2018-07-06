@@ -1,8 +1,8 @@
 <template>
     <div class="container">
        <header-nav :navItems="category" @switchNav="switchNav"/>
-       <scroll-section :sections="sections" v-if="true"/>
-       
+       <scroll-section :sections="sections" @playVideo="playVideo" v-if="true"/>
+
     </div>
 </template>
 
@@ -81,6 +81,13 @@ export default {
         this.sections = res.data.sections
         console.log(res.data.data)
         console.log(this.sections);
+      })
+    },
+    playVideo(val){
+      console.log(val)
+      wx.setStorageSync('playInfo', val);
+      wx.navigateTo({
+        url: `../player/main`
       })
     }
   }

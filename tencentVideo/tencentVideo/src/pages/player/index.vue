@@ -11,7 +11,7 @@ export default {
         PlayVideo,
         playInfo: null
     },
-    onLoad(options){
+    onLoad(){
         this.playInfo = wx.getStorageSync('playInfo')
         console.log(this.playInfo)
         // 标题处理

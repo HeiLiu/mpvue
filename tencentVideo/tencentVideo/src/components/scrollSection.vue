@@ -5,10 +5,10 @@
             <view class="section_title">{{item.title}} ></view>
             <view class="section_videos">
                 <block  v-for="(video, id) in item.videos" :key="id">
-                    <view class="video" bindtap="playTap">
+                    <view class="video" @click="handleClick(video)">
                         <image :src="video.imgUrl"/>
                         <view class="video_detail">
-                            <text class="video_title">{{video.detail}}</text>
+                            <text class="video_title">{{video.videoTitle}}</text>
                         </view>
                     </view>
                 </block>
@@ -26,6 +26,13 @@ export default {
   },
   mounted(){
     console.log(this.sections)
+  },
+  methods: {
+    handleClick(val){
+       console.log('杨玉环');
+        // console.log(val)
+        this.$emit('playVideo', val);
+    }
   }
 };
 </script>
