@@ -1,34 +1,39 @@
 <template>
     <div class="container">
        <header-nav :navItems="category" @switchNav="switchNav"/>
-       <scroll-section :sections="sections" @playVideo="playVideo" v-if="true"/>
-
+       <scroll-section :sections="sections" @playVideo="playVideo" v-if="show"/>
+       <video-page v-if="!show"/>
     </div>
 </template>
 
 <script>
 import HeaderNav from "@/components/headerNav";
 import ScrollSection from '@/components/scrollSection'
+import VideoPage from '@/views/videoOnpage'
 import Fly from '@/utils/fly'
 export default {
   components: {
     HeaderNav,
-    ScrollSection
+    ScrollSection,
+    VideoPage
   },
   data() {
     return {
       category: [
         {
           name: "王者荣耀",
-          id: "wangzhe"
+          id: "wangzhe",
+          sections: true 
         },
         {
           name: "快看",
-          id: "kuaikan"
+          id: "kuaikan",
+          sections: false
         },
         {
           name: "神剪辑",
-          id: "shenjianji"
+          id: "shenjianji",
+          sections: false
         },
         {
           name: "搞笑",
@@ -59,7 +64,8 @@ export default {
           id: "xinwen"
         }
       ],
-      sections: []
+      sections: [],
+      show: true
     };
   },
   mounted() {
@@ -71,10 +77,12 @@ export default {
       })
   },
   methods: {
-    switchNav(id){
+    switchNav(id, index){
       // 获取切换以后的菜单项
       // console.log('负组件顺丰')
       console.log(id);
+      console.log(this.category[index])
+      this.show = this.category[index].sections
       // 拼接url
       Fly.get(`'/video/${id}`)
       .then(res => {

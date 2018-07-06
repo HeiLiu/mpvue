@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="section tc">
-        <my-video id="myVideo" :src="playInfo.videoUrl" enable-danmu danmu-btn controls @click="to14"/>
+        <my-video id="myVideo" :src="playInfo.videoUrl" enable-danmu danmu-btn="false" controls @click="to14"/>
         <div class="weui-cell rmTopLine">
             <div class="weui-cell__bd video_title"> {{playInfo.videoTitle}} </div>
             <div class="weui-cell__ft weui-cell__ft_in-access midFont"> 简介 </div>
@@ -29,7 +29,7 @@ import Video from '@/components/videoPlay'
 export default {
     data(){
         return {
-            src: 'http://p9utic4op.bkt.clouddn.com/o0026omczct%20%282%29.mp4'
+            
         }
     },
     props: {

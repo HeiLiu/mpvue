@@ -42,7 +42,7 @@ export default {
 
   methods: {
     playBanners(banner){
-      console.log('zhege..')
+      // console.log('zhege..')
       
       wx.setStorageSync('playInfo', banner);
       wx.navigateTo({

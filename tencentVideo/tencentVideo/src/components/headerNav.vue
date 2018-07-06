@@ -26,7 +26,7 @@ export default {
       console.log(index);
       this.curIndex = index ? index : 0;
       let id = this.navItems[index].id
-      this.$emit('switchNav', id)
+      this.$emit('switchNav', id, index)
       
       // this.$emit('switchNav', )
     }
