@@ -84,7 +84,7 @@ export default {
       console.log(this.category[index])
       this.show = this.category[index].sections
       // 拼接url
-      Fly.get(`'/video/${id}`)
+      Fly.get(`/video/${id}`)
       .then(res => {
         this.sections = res.data.sections
         console.log(res.data.data)

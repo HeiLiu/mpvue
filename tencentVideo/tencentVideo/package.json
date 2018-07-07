@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "flyio": "^0.5.9",
-    "mpvue": "^1.0.11"
+    "mpvue": "^1.0.11",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
