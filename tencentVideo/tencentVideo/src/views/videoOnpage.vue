@@ -4,21 +4,21 @@
            <!-- // 视频播放组件 -->
            <my-video  id="myVideo" enable-danmu danmu-btn="false" controls />
            <footer>
-               <div class="left">
+               <div class="left smallFont">
                    <div class="avatar">
                        <img src="http://p9utic4op.bkt.clouddn.com/18-6-5/71393469.jpg" alt="">
-                   电影大师
+                        <span class="author">电影大师</span>
                    </div>
-                    <span class="about">明星</span>
+                <span class="about">明星</span>
                 </div>
                <div class="right icons">
-                   <span class="commont">
+                   <span class="icon comment smallFont">
                        <img src="../../static/images/icon/comment.png" alt="">2
                    </span>
-                   <span class="share">
+                   <span class="icon share">
                        <img src="../../static/images/icon/share1.png" alt="">
                    </span>
-                   <span class="delete">
+                   <span class="icon delete">
                        <img src="../../static/images/icon/delete.png" alt="">
                    </span>
                </div>
@@ -53,35 +53,74 @@ export default {
 footer {
   height: 100rpx;
   width: 100vw;
-  background: red;
+//   background: red;
   display: flex;
   flex-direction: row;
 }
 footer .left{
+    box-sizing border-box
     flex: 1;
+    justify-content center;
     align-items: center;
+    padding-left 45rpx
 }
 .left .avatar{
-    width: 30vw;
-    height: 50rpx;
-    line-height: 50rpx;
-    background: #bdbdbd;
-    border-radius: 4rpx 
+    width: auto ;
+    height: 60rpx;
+    line-height: 60rpx;
+    background: #F7F8F9;
+    border-radius: 20rpx;
+    display inline-block; 
+    padding 0 10rpx
+    margin-top 15rpx
 }
 .avatar img{
-    width: 50rpx;
-    height: 50rpx;
+    width: 60rpx;
+    height: 60rpx;
     border-radius: 50%;
     display: inline-block;
+    vertical-align middle
 }
-.icons img{
-    width: 32rpx;
-    height: 32rpx;
+.avatar .author{
+    min-width 60rpx
+    width auto 
+}
+.about{
+    min-width 60rpx
+    width auto
+    border-radius 10rpx
+    background #F7F8F9
+    margin-left 20rpx
+    display inline-block
+    height 60rpx
+    line-height 60rpx
+    padding 0 10rpx
+    
+}
 
-}
 footer .right{
     flex:  1;
-    align-items: center;
-    justify-content: center;
+    display flex
+    align-items center
+    justify-content space-around
+    margin-left 120rpx
+}
+.icons img{
+    flex 1
+    width: 32rpx;
+    height: 32rpx;
+}
+.icons .icon{
+    display inline-block
+    margin-right 20rpx
+}
+.comment img{
+    padding-right 10rpx
+    vertical-align middle
+}
+
+.smallFont{
+  color: #ccc;
+  font-size: 28rpx;
 }
 </style>
