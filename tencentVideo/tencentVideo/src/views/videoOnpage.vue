@@ -1,15 +1,15 @@
 <template>
     <div class="videos">
-       <section class="section">
+       <section class="section" v-for="(section, index) in sections" :key="index">
            <!-- // 视频播放组件 -->
-           <my-video  id="myVideo" enable-danmu danmu-btn="false" controls />
+           <my-video :src="section.videoUrl" :poster="section.imgUrl" id="myVideo" enable-danmu danmu-btn="false" controls="true" />
            <footer>
                <div class="left smallFont">
                    <div class="avatar">
                        <img src="http://p9utic4op.bkt.clouddn.com/18-6-5/71393469.jpg" alt="">
-                        <span class="author">电影大师</span>
+                        <span class="author">{{section.author}}</span>
                    </div>
-                <span class="about">明星</span>
+                <span class="about">{{section.about}}</span>
                 </div>
                <div class="right icons">
                    <span class="icon comment smallFont">
@@ -30,6 +30,9 @@
 <script>
 import Video from "@/components/videoPlay";
 export default {
+    props:{
+        sections: []
+    },
   components: {
     MyVideo: Video
   }
@@ -48,7 +51,7 @@ export default {
 }
 .videos .section {
   /* position: relative; */
-  background: burlywood;
+  background: #fff;
 }
 footer {
   height: 100rpx;
@@ -59,7 +62,8 @@ footer {
 }
 footer .left{
     box-sizing border-box
-    flex: 1;
+    // flex: 1;
+    width 70vw
     justify-content center;
     align-items: center;
     padding-left 45rpx
@@ -82,7 +86,7 @@ footer .left{
     vertical-align middle
 }
 .avatar .author{
-    min-width 60rpx
+    // min-width 60rpx
     width auto 
 }
 .about{
@@ -99,11 +103,12 @@ footer .left{
 }
 
 footer .right{
-    flex:  1;
+    // flex:  1;
+    width 30vw
     display flex
     align-items center
     justify-content space-around
-    margin-left 120rpx
+    // margin-left 120rpx
 }
 .icons img{
     flex 1

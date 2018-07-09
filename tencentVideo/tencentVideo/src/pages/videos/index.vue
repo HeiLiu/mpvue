@@ -2,7 +2,7 @@
     <div class="container">
        <header-nav :navItems="category" @switchNav="switchNav"/>
        <scroll-section :sections="sections" @playVideo="playVideo" v-if="show"/>
-       <video-page v-if="!show"/>
+       <video-page :sections="sections" v-if="!show"/>
     </div>
 </template>
 
@@ -72,8 +72,6 @@ export default {
     Fly.get('/video/wangzhe')
       .then(res => {
         this.sections = res.data.sections
-        // console.log(res.data.data)
-        // console.log(this.sections);
       })
   },
   methods: {
@@ -86,6 +84,7 @@ export default {
       // 拼接url
       Fly.get(`/video/${id}`)
       .then(res => {
+        // console.log(res.data)
         this.sections = res.data.sections
         console.log(res.data.data)
         console.log(this.sections);

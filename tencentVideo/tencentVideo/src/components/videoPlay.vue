@@ -1,6 +1,7 @@
 <template>
     <div>
-      <video id="myVideo" :src="src" :danmu-list="danmuList" enable-danmu danmu-btn controls @click="handleClick"></video>  
+      <video id="myVideo" :src="src" :poster="poster" :danmu-list="danmuList" :enable-danmu="enable-danmu" 
+      :danmu-btn="danmu-btn" :controls="controls" @click="handleClick"></video>  
     </div>
 </template>
 
@@ -8,8 +9,21 @@
 export default {
     props: {
         src: String,
+        poster: String,
         danmuList: Array,
-        videoCtx: Object
+        "enable-danmu": {
+            type: Boolean,
+            default: false
+        } ,
+        videoCtx: Object,
+        "danmu-btn": {
+            type: Boolean,
+            default: false
+        } ,
+        controls: {
+            type: Boolean,
+            default: true
+        }
     },
     mounted() {
         // console.log(this.playUrl);
