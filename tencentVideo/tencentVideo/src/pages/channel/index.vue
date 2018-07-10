@@ -1,12 +1,17 @@
 <template>
     <div class="container">
-        <header-nav :navItems="category" @switchNav="switchNav"/>
-        <div><img src="../../../static/images/icon/search.png" alt=""></div>
+      <div class="header">
+        <header-nav id="category" :navItems="category" @switchNav="switchNav"/>
+        <img class="searchIcon" src="../../../static/images/icon/search.png">
+      </div>
+      <video-section :sections="sections" @playVideo="playVideo"/>
     </div>
 </template>
 
 <script>
-import HeaderNav from "@/components/headerNav";
+import Fly from '@/utils/fly'
+import HeaderNav from "@/components/headerNav"
+import VideoSection from "@/components/section"
 export default {
   data() {
     return {
@@ -30,73 +35,38 @@ export default {
           name: "动漫",
           id: "dongman"
         }
-      ]
+      ],
+      sections: []
     };
   },
   components: {
-      HeaderNav
+      HeaderNav,
+      VideoSection
+  },
+  methods: {
+    playVideo() {
+      console.log('播放视频')
+    }
+  },
+  mounted(){
+    Fly.get('/index/sections').then(res=>{
+     this.sections = res.data.sections;
+    //  console.log(this.sections)
+   })
   }
 };
 </script>
 
-<style scoped>
-/* pages/video_detail/video_detail.wxss */
-.section {
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
-}
-#myVideo {
-  width: 100%;
-}
-.video_title {
-  font-weight: 600;
-}
-.midFont {
-  font-size: 34rpx;
-}
-.video_detail {
-  padding: 0 20rpx;
-  font-size: 28rpx;
-}
-.operation {
-  display: flex;
-  align-items: center;
-  padding: 30rpx;
-  padding-bottom: 40rpx;
-}
-.clarity {
-  position: relative;
-  width: 120rpx;
-  justify-content: center;
-  align-items: center;
-  font-size: 28rpx;
-  border: 2px solid #fff;
-  border-radius: 8rpx;
-  padding: 0 15rpx;
-  box-sizing: border-box;
-}
-.clarity .arrow {
-  padding: 5rpx;
-  width: 32rpx;
-  height: 32rpx;
-}
-.operation image {
-  position: absolute;
-  width: 64rpx;
-  height: 64rpx;
-}
-.share {
-  right: 150rpx;
-}
-.heart {
-  right: 30rpx;
-}
-.rmTopLine:before {
-  border-top: none;
-}
-.zhuanji::before {
-  border-color: rgba(0, 0, 0, 0.2);
-}
+<style lang="stylus" scoped>
+.header
+  position relative
+#category
+  width 80v
+.searchIcon
+  width 48rpx
+  height 48rpx
+  position absolute
+  top 50%
+  margin-top -24rpx
+  right 0
 </style>
