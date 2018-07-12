@@ -15,7 +15,7 @@ export default {
         this.playInfo = wx.getStorageSync('playInfo')
         console.log(this.playInfo)
         // 标题处理
-        if(this.playInfo.videoTitle.indexOf('】')>=0){
+        if(this.playInfo.videoTitle.indexOf('】')>=0){ 
             this.playInfo.videoTitle = this.playInfo.videoTitle.split('】')[1]
         }
     }

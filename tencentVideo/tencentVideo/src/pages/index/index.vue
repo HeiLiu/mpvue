@@ -5,7 +5,7 @@
         <icon class="weui-icon-search_in-box" type="search" size="20"></icon>
         <input type="text" class="weui-search-bar__input" placeholder="请输入片名、主演或导演" bindinput="bindKeyInput" />
       </div>
-      <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
+       <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
         <block v-for="(item, index) in banners" :key="index">
           <swiper-item  @click="playBanners(item)">
             <img :src="item.imgUrl" mode="aspectFill" class="slide-image" />
