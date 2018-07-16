@@ -1,20 +1,20 @@
 <template>
     <div>
         <scroll-view class="category_bottom" scroll-x :scroll-into-view="toView" scroll-with-animation="true">
-        <view class="section" v-for="(item, index) in sections" :key="index">
-            <view class="section_title">{{item.title}} ></view>
-            <view class="section_videos">
+        <div class="section" v-for="(item, index) in sections" :key="index">
+            <div class="section_title">{{item.title}} ></div>
+            <div class="section_videos">
                 <block  v-for="(video, id) in item.videos" :key="id">
-                    <view class="video" @click="handleClick(video)">
-                        <image :src="video.imgUrl"/>
-                        <view class="video_detail">
+                    <div class="video" @click="handleClick(video)">
+                        <img :src="video.imgUrl"/>
+                        <div class="video_detail">
                             <text class="video_title">{{video.videoTitle}}</text>
-                        </view>
-                    </view>
+                        </div>
+                    </div>
                 </block>
-            </view>
-            <view class="line"></view>
-        </view>
+            </div>
+            <div class="line"></div>
+        </div>
       </scroll-view>
     </div>
 </template>
