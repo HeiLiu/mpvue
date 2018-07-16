@@ -22,6 +22,7 @@
           </block>
         </swiper>
       </div>
+      <div class="hotVideo">热剧精选</div>
       <video-section id="section" :sections="sections" @playVideo="playVideo"/>
     </div>
 </template>
@@ -34,6 +35,10 @@ import BannerSwiper from "@/components/bannerSwiper";
 export default {
   data() {
     return {
+      indicatorDots: false,
+      autoplay: true,
+      interval: 5000,
+      duration: 1000,
       category: [
         {
           name: "电视剧",
@@ -52,7 +57,8 @@ export default {
         },
         {
           name: "动漫",
-          id: "dongman"
+          id: "dongman",
+          sections: true
         }
       ],
       sections: [],
@@ -65,22 +71,45 @@ export default {
     BannerSwiper
   },
   methods: {
-    playVideo() {
-      console.log("播放视频");
+    playBanners(banner){
+      // console.log('zhege..')
+      
+      wx.setStorageSync('playInfo', banner);
+      wx.navigateTo({
+        url: `../player/main`
+      })
+    },
+    playVideo(val){
+      console.log('父组件输出')
+      console.log(val);
+      wx.setStorageSync('playInfo', val);
+      wx.navigateTo({
+        url: `../player/main`
+      })
+    },
+    switchNav(id, index){
+      // 获取切换以后的菜单项
+      // console.log('负组件顺丰')
+      console.log(id);
+      console.log(this.category[index])
+      // this.show = this.category[index].sections
+      // 拼接url
+      Fly.get(`/channel/${id}`)
+      .then(res => {
+        // console.log(res.data)
+        this.banners = res.data.banners
+        this.sections = res.data.sections
+        console.log(res.data.banners)
+        console.log(this.sections);
+      })
     }
   },
   mounted() {
     // 调用应用实例的方法获取全局数据
-    Fly.get("/banners").then(res => {
-      this.banners = res.data.banners;
-      console.log(res.data.banners);
-      //  console.log(this.banners)
-      //  console.log(this.banners)
-    });
-    Fly.get("/index/sections").then(res => {
-      this.sections = res.data.sections;
-      //  console.log(this.sections)
-    });
+    Fly.get("/channel/dianshiju").then(res => {
+      this.banners = res.data.banners
+      this.sections = res.data.sections
+    })
   }
 };
 </script>
@@ -98,13 +127,11 @@ export default {
   left: 0;
   right: 0;
   /* background: #f4f6f8; */
-  height: 570rpx;
+  height: 685rpx;
   background: linear-gradient(#fff, #f4f6f8);
 }
 
-#section {
-  margin-top: -570rpx;
-}
+
 
 #category {
   width: 80v;
@@ -178,4 +205,10 @@ export default {
   background: rgba(224, 200, 200, 0.7);
   color: #f4f6f8;
 }
+.hotVideo
+  width 100rpx 
+  height 32rpx
+  margin-top 70rpx
+  background #000
 </style>
+

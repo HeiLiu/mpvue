@@ -1,30 +1,30 @@
 <template>
     <div class="sections">
-        <view class="section" v-for="(section, index) in sections" :key="index">
-            <view class="section_title">{{section.section_title}}</view>
-            <view class="section_poster" v-if="section.posterImgUrl">
+        <div class="section" v-for="(section, index) in sections" :key="index">
+            <div class="section_title">{{section.section_title}}</div>
+            <div class="section_poster" v-if="section.posterImgUrl">
             <img class="poster_img" :src="section.posterImgUrl"/>
-            <view class="poster_detail">{{section.posterDetail}}</view>
+            <div class="poster_detail">{{section.posterDetail}}</div>
             <text class="poster_title">{{section.posterTitle}}</text>
-            </view>
-            <view class="section_videos">
+            </div>
+            <div class="section_videos">
             <block v-for="(video, id) in section.videos" :key="id">
-                <view class="video" @click="handleClick(video)">
-                <image mode="aspectFill" :src="video.imgUrl"/>
-                <view class="detail_info">{{video.videoInfo}}</view>
-                <view class="video_detail">
+                <div class="video" @click="handleClick(video)">
+                <img mode="aspectFill" :src="video.imgUrl"/>
+                <div class="detail_info">{{video.videoInfo}}</div>
+                <div class="video_detail">
                     <text class="video_title">{{video.videoTitle}}</text>
                     <text class="video_content smallFont">{{video.videoContent}}</text>
-                </view>
-                </view>
+                </div>
+                </div>
             </block>
-            <view class="line"></view>
-            <view class="section_ft"  @click="handleRefresh">
+            <div class="line"></div>
+            <div class="section_ft"  @click="handleRefresh">
                 <image class="refresh" src="/static/images/icon/refresh.png"/>
                 <text class="refresh_info smallFont">换一批试试</text>
-            </view>
-            </view>
-        </view>
+            </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -58,6 +58,14 @@ export default {
 
 }
 </script>
+
+<style>
+.sections{
+    /* position: relative; */
+    display: block;
+    padding-top: 570rpx;
+}
+</style>
 
 <style scoped>
 .sections{
@@ -151,6 +159,7 @@ export default {
 } */
 .video image{
   height: 200rpx;
+  width: 338rpx;
 }
 .detail_info{
   background: red;

@@ -19,20 +19,39 @@
     "leibie": "都市 爱情",
     "score": "7.8",
     "poster": "https://puui.qpic.cn/vcover_hz_pic/0/6qwt97k9auzlv481516675955/0"
+},{
+  "id": "19878",
+  "imgUrl": "http://puui.qpic.cn/tv/0/28946611_330185/0",
+  "videoTitle": "时分开心上演热血灌篮！",
+  "videoInfo": "更新至16集",
+  "videoUrl": "http://p9utic4op.bkt.clouddn.com/f0026xkk85a.mp4",
+  "introduce": "如果有这样一个哥哥你是否会跟时秒一样每天都想暴走一百遍？！说好的，烤肠给妹妹，自己只吃一口，却一大口都吞掉；说好石头剪刀布，输掉的人去买冰淇淋，回来的时候却少了一个冰淇淋球；土豆炖牛肉连吃6天，最终变成根本看不出来是什么的黑暗料理。“我哥”那个人……霸气侧漏的妹妹“时秒”和懒散逗比的哥哥“时分”，可以因为各种日常小事冲突吵架大打出手，遇到困难的时候，却又坚定地站在对方一边，默默地守护彼此。  哥哥的好基友“甄开心”，傻白甜，也是颜值担当。妹妹的闺蜜“妙妙”可爱热心，差点误会哥哥是“渣男”……",
+  "leibie": "偶像",
+  "score": "8.8",
+  "poster": "https://puui.qpic.cn/vcover_hz_pic/0/kg1tfqbx17kc7dt1530505138/0"
 }],
   "sections": [
       {
-        "section_title": "创造101 人气学长助阵公演",
-        "posterImgUrl": "http://puui.qpic.cn/tv/0/25725891_1080607/0",
-        "posterDetail": "06-09",
-        "posterTitle": "🍵六首原创唱跳超过瘾",
+        "section_title": "",
+        "posterImgUrl": "",
+        "posterDetail": "",
+        "posterTitle": "",
         "videos": [
           {
-            "imgUrl": "http://puui.qpic.cn/tv/0/25725670_498280/0",
-            "videoInfo": "06-08",
-            "videoTitle": "奔跑吧2·要哭了",
-            "videoContent": "陈赫含泪不忍撕邓超名牌",
-            "videoUrl": "http://p9utic4op.bkt.clouddn.com/o0026omczct%20%282%29.mp4"
+            "imgUrl": "http://puui.qpic.cn/tv/0/29061384_612344/0",
+            "videoInfo": "01:19",
+            "videoTitle": "扶摇[会员抢先看]",
+            "videoContent": "帅！红装扶摇开启剿匪副本",
+            "poster": "https://puui.qpic.cn/vcover_hz_pic/0/639agzdh10yu2q21529249761/0",
+            "videoUrl": "http://p9utic4op.bkt.clouddn.com/y0714wuymro.p701.1.mp4"
+          },
+          {
+            "imgUrl": "http://puui.qpic.cn/tv/0/28970025_330185/0",
+            "videoInfo": "更新至28集",
+            "videoTitle": "1001夜[会员抢先看]",
+            "videoContent": "柏海遭威胁 凌凌七险遇害",
+            "poster": "https://puui.qpic.cn/vcover_hz_pic/0/6qwt97k9auzlv481516675955/0",
+            "videoUrl": ""
           },
           {
             "imgUrl": "http://puui.qpic.cn/tv/0/25642166_498280/0",
@@ -40,12 +59,6 @@
             "videoTitle": "如果, 爱",
             "videoContent": "我养你💓张柏芝最深情表白",
             "videoUrl": "http://p9utic4op.bkt.clouddn.com/zhangbozhi"
-          },
-          {
-            "imgUrl": "http://puui.qpic.cn/tv/0/25731749_498280/0",
-            "videoInfo": "06-08",
-            "videoTitle": "高能少年团互怼cp",
-            "videoContent": "张一山杨紫互相diss年纪大"
           },
           {
             "imgUrl": "http://puui.qpic.cn/tv/0/25730925_498280/0",
@@ -62,11 +75,24 @@
         "posterTitle": "爱国者[首播 会员提前看]",
         "videos": [
           {
-            "imgUrl": "http://puui.qpic.cn/tv/0/25725670_498280/0",
-            "videoInfo": "06-08",
-            "videoTitle": "奔跑吧2·要哭了",
-            "videoContent": "陈赫含泪不忍撕邓超名牌",
-            "videoUrl": "http://p9utic4op.bkt.clouddn.com/o0026omczct%20%282%29.mp4"
+            "imgUrl": "http://puui.qpic.cn/tv/0/25730925_498280/0",
+            "videoInfo": "",
+            "videoTitle": "战神纪·独播",
+            "videoContent": "陈伟霆林允上演传奇爱情"
+          },
+          {
+            "imgUrl": "http://puui.qpic.cn/tv/0/29061384_612344/0",
+            "videoInfo": "01:19",
+            "videoTitle": "扶摇[会员抢先看]",
+            "videoContent": "帅！红装扶摇开启剿匪副本",
+            "videoUrl": "https://puui.qpic.cn/vcover_hz_pic/0/639agzdh10yu2q21529249761/0"
+          },
+          {
+            "imgUrl": "http://puui.qpic.cn/tv/0/28970025_330185/0",
+            "videoInfo": "更新至28集",
+            "videoTitle": "1001夜[会员抢先看]",
+            "videoContent": "柏海遭威胁 凌凌七险遇害",
+            "videoUrl": "https://puui.qpic.cn/vcover_hz_pic/0/6qwt97k9auzlv481516675955/0"
           },
           {
             "imgUrl": "http://puui.qpic.cn/tv/0/25642166_498280/0",
@@ -74,18 +100,6 @@
             "videoTitle": "如果, 爱",
             "videoContent": "我养你💓张柏芝最深情表白",
             "videoUrl": "http://p9utic4op.bkt.clouddn.com/zhangbozhi"
-          },
-          {
-            "imgUrl": "http://puui.qpic.cn/tv/0/25731749_498280/0",
-            "videoInfo": "06-08",
-            "videoTitle": "高能少年团互怼cp",
-            "videoContent": "张一山杨紫互相diss年纪大"
-          },
-          {
-            "imgUrl": "http://puui.qpic.cn/tv/0/25730925_498280/0",
-            "videoInfo": "",
-            "videoTitle": "战神纪·独播",
-            "videoContent": "陈伟霆林允上演传奇爱情"
           }
         ]
       }
