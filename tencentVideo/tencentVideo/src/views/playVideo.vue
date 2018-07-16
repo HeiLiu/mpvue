@@ -13,7 +13,7 @@
         <div class="clarity">高清
             <img class="arrow" src="../../static/images/icon/arrow.png"/>
         </div>
-        <img class="share" src="../../static/images/icon/share.png"/>
+        <img class="share" src="../../static/images/icon/share6.png"/>
         <img class="heart" src="../../static/images/icon/heart.png"/>
         </div>
         <div class="weui-cell zhuanji">
@@ -103,6 +103,8 @@ export default {
 }
 .share{
     right: 150rpx;
+    width: 58rpx;
+    height: 58rpx;
 }
 .heart{
     right:30rpx;

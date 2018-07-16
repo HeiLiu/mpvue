@@ -23,7 +23,7 @@
         </swiper>
       </div>
       <div class="hotVideo">热剧精选</div>
-      <video-section id="section" :sections="sections" @playVideo="playVideo"/>
+      <video-section id="section" :sections="sections" :refresh="refresh" @playVideo="playVideo"/>
     </div>
 </template>
 
@@ -39,6 +39,7 @@ export default {
       autoplay: true,
       interval: 5000,
       duration: 1000,
+      refresh: false,
       category: [
         {
           name: "电视剧",

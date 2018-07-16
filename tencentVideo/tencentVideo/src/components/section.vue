@@ -18,8 +18,8 @@
                 </div>
                 </div>
             </block>
-            <div class="line"></div>
-            <div class="section_ft"  @click="handleRefresh">
+            <div class="line" v-if="refresh"></div>
+            <div class="section_ft" v-if="refresh" @click="handleRefresh">
                 <image class="refresh" src="/static/images/icon/refresh.png"/>
                 <text class="refresh_info smallFont">换一批试试</text>
             </div>
@@ -36,7 +36,11 @@ export default {
         }
     },
     props: {
-        sections: Array
+        sections: Array,
+        refresh: {
+          type: Boolean,
+          default: true
+        }
     },
     methods: {
       handleClick(val){
