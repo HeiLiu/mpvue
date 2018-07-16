@@ -7,7 +7,7 @@
             <div class="weui-cell__ft weui-cell__ft_in-access midFont"> 简介 </div>
         </div>
         <div class="weui-cell video_detail rmTopLine">
-            <div class="weui-cell__bd video_detail"><text>7.4分 </text>·<text style="color: orange;"> 独播 </text>·<text> 都市 </text>·<text> 13.3万 </text></div>
+            <div class="weui-cell__bd video_detail"><text>{{playInfo.score}}</text>·<text style="color: orange;"> 独播 </text>·<text> {{playInfo.leibie}} </text>·<text> 13.3万 </text></div>
         </div>
         <div class="operation">
         <div class="clarity">高清
