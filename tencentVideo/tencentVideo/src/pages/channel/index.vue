@@ -31,7 +31,7 @@
 import Fly from "@/utils/fly";
 import HeaderNav from "@/components/headerNav";
 import VideoSection from "@/components/section";
-import BannerSwiper from "@/components/bannerSwiper";
+import search from '@/views/search'
 export default {
   data() {
     return {
@@ -69,7 +69,7 @@ export default {
   components: {
     HeaderNav,
     VideoSection,
-    BannerSwiper
+    search
   },
   methods: {
     playBanners(banner){

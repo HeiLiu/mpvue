@@ -1,30 +1,23 @@
 <!-- 搜索页面组件 -->
 <template>
     <div>
-     <div class="weui-search-bar">
-        <div class="weui-search-bar__form">
-            <div class="weui-search-bar__box">
-                <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                <input type="text" class="weui-search-bar__input" placeholder="请输入片名、主演或导演" value="{{inputVal}}" focus="{{inputShowed}}"
-                    bindinput="bindKeyInput" />
-                <div class="weui-icon-clear" bindtap="clearInput">
-                    <icon type="clear" size="14"></icon>
-                </div>
+      <div class="searchArea">
+        <div class="left">
+            <div class="search">
+                <icon class="search" type="search" size="18"></icon>
+                <!-- <img class="searchIcon" src="../../static/images/icon/search.png"> -->
             </div>
-            <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
-                <icon class="weui-icon-search" type="search" size="14"></icon>
-                <div class="weui-search-bar__text" bindtap="">搜索</div>
-            </label>
+            <input type="search" placeholder="请输入片名、主演或导演" v-model="inputVal"/>
+            <!-- <icon class="clear" type="clear" size="14"></icon> -->
         </div>
-        <div class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="searchTap">搜索</div>
-    </div>
+        <div class="weui-search-bar__cancel-btn" @click="cancel">取消</div>
+     </div>
 
-    <div hidden="{{!histroyShowed}}">
+    <div :hidden="!histroyShowed">
         <text class="msg">历史搜索</text>
         <div class="search-log">
-            <block wx:for="{{histories}}">
-
-                <text class="his_item">{{item}}</text>
+            <block v-for="(history, index) in histories" :key="index">
+                <text class="his_item">{{history}}</text>
             </block>
         </div>
     </div>
@@ -33,6 +26,8 @@
         <block wx:for="12">
             <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <div class="weui-cell__hd">
+                     <!-- 1.e92600 2.ff8000 3.fdc000 -->
+                     <!-- 3以后 e6e6e6 col 878787 -->
                     <view class="square range">1</view>
                 </div>
                 <div class="weui-cell__bd">奔跑吧 第2季</div>
@@ -45,54 +40,142 @@
 
 <script>
 export default {
-
-}
+  data(){
+      return {
+        inputShowed: false,
+        histroyShowed:false,
+        inputVal: "",
+        histories:[]
+      }
+  },
+  props: {
+      
+  },  
+  methods: {
+    hideInput: function() {
+      this.inputVal = ""
+        this.inputShowed = false
+    },
+    clearInput: function() {
+      this.inputVal = ""
+    },
+    inputTyping: function(e) {
+      this.inputVal = e.detail.value
+    },
+    bindKeyInput(e) {
+        this.inputVal =e.detail.value
+         console.log(this.data.inputVal);
+    },
+    cancel(){
+        console.log('取消')
+        this.$emit('cancel')
+    },
+    searchTap(e) {
+      const input = this.data.inputVal;
+      const histories = this.data.histories;
+      histories.push(input);
+      this.histroyShowed = true
+       this.histories = histories
+      console.log(`lishi${histories}`);
+    }
+  }
+};
 </script>
 
 <style scoped>
+.searchArea{
+    padding: 0 30rpx;
+    display: flex;
+    font-size: 32rpx;
+}
+.searchArea .left{
+    flex: 1;
+    padding: 10rpx;
+    border-radius: 10rpx;
+    height: 60rpx;
+    background: #f7f7f7;
+    vertical-align: middle;
+    position: relative;
+}
+.left .search {
+    margin-right: 10rpx;
+    display: inline;
+    vertical-align: middle;
+}
+.searchIcon {
+  width: 48rpx;
+  height: 48rpx;
+  /* top: 24rpx;
+  right: 30rpx; */
+}
+.left input {
+    max-width: 450rpx;
+    margin-top: 5rpx;
+    padding-bottom: 0;
+    display: inline-block;
+}
+.left .clear{
+    display: inline;
+    position: absolute;
+    top: 35%;
+    right: 10rpx;
+}
 .searchbar-result {
-    margin-top: 0;
-    font-size: 14px;
+  margin-top: 0;
+  font-size: 14px;
 }
 
 .searchbar-result:before {
-    display: none;
+  display: none;
 }
-.msg{
-    font-size: 28rpx;
-    color: #c5c2c2;
-    padding: 30rpx;
+.msg {
+  font-size: 28rpx;
+  color: #c5c2c2;
+  padding: 30rpx;
 }
-.search-log{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap-reverse;
-    align-items: center;
-    /* justify-content: space-around; */
+.search-log {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  /* justify-content: space-around; */
 }
-.his_item{
-    display: inline-block;
-    width: 45%;
-    height: 40rpx;
-    line-height: 40rpx;
-    border-radius: 8rpx;
-    padding: 5rpx;
-    margin: 10rpx 10rpx;
-    background: #ece8e8;
-    font-size: 30rpx;
-    text-align: center;
-   font-family:microsoft yahei;
+.his_item {
+  /* display: inline-block;
+  width: 45%;
+  height: 40rpx;
+  line-height: 40rpx;
+  border-radius: 8rpx;
+  padding: 5rpx;
+  margin: 10rpx 10rpx;
+  background: #f7f7f7;
+  font-size: 30rpx;
+  text-align: center;
+  font-family: microsoft yahei; */
+      display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 10px;
+    margin: 0 10px 10px 0;
+    font-size: 14px;
+    background-color: #f7f7f7;
+    border-radius: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    color: #4c4c4c;
 }
-.square{
-    display:inline-block;
-    width: 40rpx;
-    height: 40rpx;
-    background: red;
-    line-height: 40rpx;
-    text-align: center;
-    box-sizing: border-box;
-    color: #fff;
-    margin: 20rpx;
-    border-radius: 4rpx;
+.square {
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  background: red;
+  line-height: 40rpx;
+  text-align: center;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 20rpx;
+  border-radius: 4rpx;
 }
 </style>

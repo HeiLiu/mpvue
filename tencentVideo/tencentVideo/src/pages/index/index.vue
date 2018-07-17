@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <div class="header">
+    <div class="header" v-show="!search">
       <div class="weui-search-bar__box">
         <icon class="weui-icon-search_in-box" type="search" size="20"></icon>
-        <input type="text" class="weui-search-bar__input" placeholder="请输入片名、主演或导演" bindinput="bindKeyInput" />
+        <input type="text" class="weui-search-bar__input" placeholder="请输入片名、主演或导演" @click="searchInput" />
       </div>
        <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
         <block v-for="(item, index) in banners" :key="index">
@@ -17,13 +17,15 @@
         </block>
       </swiper>
     </div>   
-    <video-section :sections="sections" @playVideo="playVideo" @refresh="refresh"/>
+    <video-section :sections="sections" @playVideo="playVideo" v-if="!search" @refresh="refresh"/>
+    <v-search v-if="search" @cancel="cancel"></v-search>
   </div>
 </template>
 
 <script>
 import Fly from '@/utils/fly'
 import VideoSection from '@/components/section'
+import Search from '@/views/search'
 export default {
   data() {
     return {
@@ -31,16 +33,25 @@ export default {
       autoplay: true,
       interval: 5000,
       duration: 1000,
+      search: false,
       banners: [],
       sections: []
     }
   },
 
   components: {
-    VideoSection
+    VideoSection,
+    'v-search': Search
   },
 
   methods: {
+    searchInput(){
+      console.log('显示搜索页')
+      this.search = true
+    },
+    cancel(){
+      this.search = false
+    },
     playBanners(banner){
       // console.log('zhege..')
       
