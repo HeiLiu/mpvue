@@ -6,3 +6,6 @@ export function getData(url) {
         return res.data.data
     })
 }
+
+
+

@@ -18,7 +18,7 @@
       </swiper>
     </div>   
     <video-section :sections="sections" @playVideo="playVideo" v-if="!search" @refresh="refresh"/>
-    <v-search v-if="search" @cancel="cancel"></v-search>
+    <v-search v-if="search" @cancel="cancel" @searchVideo="searchVideo"></v-search>
   </div>
 </template>
 
@@ -45,6 +45,14 @@ export default {
   },
 
   methods: {
+    searchVideo(word){
+      // console.log('123')
+      Fly.get('http://s.video.qq.com/smt_wap?plat=2&ver=3&num=10&otype=json&query=%E9%BB%84%E6%B8%A4&callback=show')
+        .then(res => {
+          let result = res.data.replace('show(','').replace(')', '')
+          console.log(JSON.parse(result).item)
+        })
+    },
     searchInput(){
       console.log('显示搜索页')
       this.search = true

@@ -7,7 +7,7 @@
                 <icon class="search" type="search" size="18"></icon>
                 <!-- <img class="searchIcon" src="../../static/images/icon/search.png"> -->
             </div>
-            <input type="search" placeholder="请输入片名、主演或导演" v-model="inputVal"/>
+            <input type="search" placeholder="请输入片名、主演或导演" v-model="inputVal" @input="search"/>
             <!-- <icon class="clear" type="clear" size="14"></icon> -->
         </div>
         <div class="weui-search-bar__cancel-btn" @click="cancel">取消</div>
@@ -23,15 +23,15 @@
     </div>
     <div class="hotItem">
         <text class="msg">热门搜索</text>
-        <block wx:for="12">
+        <block v-for="(history, index) in histories" :key="index">
             <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <div class="weui-cell__hd">
                      <!-- 1.e92600 2.ff8000 3.fdc000 -->
                      <!-- 3以后 e6e6e6 col 878787 -->
-                    <view class="square range">1</view>
+                    <div class="square range">1</div>
                 </div>
                 <div class="weui-cell__bd">奔跑吧 第2季</div>
-                <view class="weui-cell__ft ">⬆</view>
+                <div class="weui-cell__ft ">⬆</div>
             </navigator>
         </block>
     </div>   
@@ -52,6 +52,11 @@ export default {
       
   },  
   methods: {
+    search(e) {
+        // console.log(e.target.value)
+      let word = e.target.value  
+      this.$emit('searchVideo', word)
+    },
     hideInput: function() {
       this.inputVal = ""
         this.inputShowed = false
