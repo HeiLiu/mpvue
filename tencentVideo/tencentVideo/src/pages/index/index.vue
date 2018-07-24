@@ -18,7 +18,7 @@
       </swiper>
     </div>   
     <video-section :sections="sections" @playVideo="playVideo" v-if="!search" @refresh="refresh"/>
-    <v-search v-if="search" @cancel="cancel" @searchVideo="searchVideo"></v-search>
+    <v-search v-if="search" :hotSearch="hotSearch" @cancel="cancel" @searchVideo="searchVideo"></v-search>
   </div>
 </template>
 
@@ -35,7 +35,12 @@ export default {
       duration: 1000,
       search: false,
       banners: [],
-      sections: []
+      sections: [],
+      hotSearch: [
+        {name: '奔跑吧', status: 'up' }, {name: '奔跑吧', status: 'up' },
+         {name: '奔跑吧', status: 'up' }, {name: '奔跑吧', status: 'up' },
+          {name: '奔跑吧', status: 'up' }, {name: '奔跑吧', status: 'up' },
+        ]
     }
   },
 
@@ -47,10 +52,18 @@ export default {
   methods: {
     searchVideo(word){
       // console.log('123')
-      Fly.get('http://s.video.qq.com/smt_wap?plat=2&ver=3&num=10&otype=json&query=%E9%BB%84%E6%B8%A4&callback=show')
+      console.log(word)
+      // http://s.video.qq.com/smt_wap?plat=2&ver=3&num=10&otype=json&query=%E9%BB%84%E6%B8%A4&callback=show
+      // http://s.video.qq.com/smt_wap?plat=2&num=10&otype=json&query=%E9%BB%84%E6%B8%A4&callback=show
+      Fly.get(`http://s.video.qq.com/smt_wap?plat=2&ver=3&num=10&otype=json&query=${word}&callback=show`)
         .then(res => {
           let result = res.data.replace('show(','').replace(')', '')
-          console.log(JSON.parse(result).item)
+          let suggestions = JSON.parse(result).item
+            console.log(suggestions)
+          suggestions = suggestions.map(suggestion => {
+           return {name: suggestion.word}
+          });
+          this.hotSearch = suggestions
         })
     },
     searchInput(){
