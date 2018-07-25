@@ -1,0 +1,39 @@
+{
+  "hotSearch": [
+    {
+      "name": "扶摇",
+      "status": 1
+    },{
+      "name": "一千零一夜",
+      "status": 2
+    },{
+      "name": "奔跑吧 第2季",
+      "status": 3
+    },{
+      "name": "小猪佩奇第4季",
+      "status": 1
+    },{
+      "name": "猎毒人",
+      "status": 1
+    },{
+      "name": "流星花园",
+      "status": 1
+    },
+    {
+      "name": "斗罗大陆",
+      "status": 1
+    },{
+      "name": "极限挑战",
+      "status": 1
+    },{
+      "name": "魔道祖师",
+      "status": 1
+    },{
+      "name": "创造101",
+      "status": 3
+    },{
+      "name": "中餐厅 第2季",
+      "status": 1
+    }
+  ]
+}

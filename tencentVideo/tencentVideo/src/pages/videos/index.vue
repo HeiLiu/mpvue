@@ -10,7 +10,7 @@
 import HeaderNav from "@/components/headerNav";
 import ScrollSection from '@/components/scrollSection'
 import VideoPage from '@/views/videoOnpage'
-import Fly from '@/utils/fly'
+import { getVideosInfo } from '@/api/getData.js'
 export default {
   components: {
     HeaderNav,
@@ -68,30 +68,22 @@ export default {
       show: true
     };
   },
-  mounted() {
-    Fly.get('/video/wangzhe')
-      .then(res => {
-        this.sections = res.data.sections
-      })
+  async mounted() {
+    this.sections = await getVideosInfo('/video/wangzhe')
   },
   methods: {
-    switchNav(id, index){
+    async switchNav(id, index){
       // 获取切换以后的菜单项
-      // console.log('负组件顺丰')
-      console.log(id);
-      console.log(this.category[index])
-      this.show = this.category[index].sections
+      // this.show = this.category[index].sections
       // 拼接url
-      Fly.get(`/video/${id}`)
-      .then(res => {
-        // console.log(res.data)
-        this.sections = res.data.sections
-        console.log(res.data.data)
-        console.log(this.sections);
-      })
+      this.sections = await getVideosInfo(`/video/${id}`)
     },
     playVideo(val){
       console.log(val)
+
+      const history = wx.getStorageSync('playHistory') || []
+      history.push(val)
+      wx.setStorageSync('playHistory', history);
       wx.setStorageSync('playInfo', val);
       wx.navigateTo({
         url: `../player/main`

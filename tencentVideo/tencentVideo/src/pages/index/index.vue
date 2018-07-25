@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
+  <div class="container" :class="[search?'SearchContainer': '']">
     <div class="header" v-show="!search">
       <div class="weui-search-bar__box">
         <icon class="weui-icon-search_in-box" type="search" size="20"></icon>
-        <input type="text" class="weui-search-bar__input" placeholder="请输入片名、主演或导演" @click="searchInput" />
+        <input type="text" disabled class="weui-search-bar__input" placeholder="请输入片名、主演或导演" @click.prevent="searchInput" />
       </div>
        <swiper class="swiper" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
         <block v-for="(item, index) in banners" :key="index">
@@ -24,6 +24,7 @@
 
 <script>
 import Fly from '@/utils/fly'
+import { searchResult, getHotSearch } from '@/api/getData.js'
 import VideoSection from '@/components/section'
 import Search from '@/views/search'
 export default {
@@ -36,11 +37,7 @@ export default {
       search: false,
       banners: [],
       sections: [],
-      hotSearch: [
-        {name: '奔跑吧', status: 'up' }, {name: '奔跑吧', status: 'up' },
-         {name: '奔跑吧', status: 'up' }, {name: '奔跑吧', status: 'up' },
-          {name: '奔跑吧', status: 'up' }, {name: '奔跑吧', status: 'up' },
-        ]
+      hotSearch: []
     }
   },
 
@@ -50,47 +47,39 @@ export default {
   },
 
   methods: {
-    searchVideo(word){
-      // console.log('123')
-      console.log(word)
-      // http://s.video.qq.com/smt_wap?plat=2&ver=3&num=10&otype=json&query=%E9%BB%84%E6%B8%A4&callback=show
-      // http://s.video.qq.com/smt_wap?plat=2&num=10&otype=json&query=%E9%BB%84%E6%B8%A4&callback=show
-      Fly.get(`http://s.video.qq.com/smt_wap?plat=2&ver=3&num=10&otype=json&query=${word}&callback=show`)
-        .then(res => {
-          let result = res.data.replace('show(','').replace(')', '')
-          let suggestions = JSON.parse(result).item
-            console.log(suggestions)
-          suggestions = suggestions.map(suggestion => {
-           return {name: suggestion.word}
-          });
-          this.hotSearch = suggestions
-        })
+    async searchVideo(word){
+      this.hotSearch =await searchResult(word)
     },
-    searchInput(){
+    async searchInput(){
       console.log('显示搜索页')
       this.search = true
+      this.hotSearch = await getHotSearch('/hotSearch')
     },
     cancel(){
       this.search = false
     },
     playBanners(banner){
-      // console.log('zhege..')
-      
+      const history = wx.getStorageSync('playHistory') || []
+      history.push(banner)
+      wx.setStorageSync('playHistory', history);
       wx.setStorageSync('playInfo', banner);
       wx.navigateTo({
         url: `../player/main`
       })
     },
     playVideo(val){
-      console.log('父组件输出')
-      console.log(val);
+      // console.log('父组件输出')
+      // console.log(val);
+      const history = wx.getStorageSync('playHistory') || []
+      history.push(val)
+      wx.setStorageSync('playHistory', history);
       wx.setStorageSync('playInfo', val);
       wx.navigateTo({
         url: `../player/main`
       })
     },
     refresh(val){
-      console.log('负组件调用')
+      console.log('刷新')
       console.log(val);
     }
   },
@@ -115,6 +104,9 @@ export default {
 </script>
 
 <style scoped>
+.SearchContainer{
+  padding: 0;
+}
 .weui-icon-search_in-box {
   left: 0;
   top: 10rpx;
@@ -161,4 +153,5 @@ export default {
   background: rgba(224, 200, 200, 0.7);
   color: #f4f6f8;
 }
+ 
 </style>

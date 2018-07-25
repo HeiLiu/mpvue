@@ -28,7 +28,7 @@
                 <div class="weui-cell__hd">
                      <!-- 1.e92600 2.ff8000 3.fdc000 -->
                      <!-- 3以后 e6e6e6 col 878787 -->
-                    <div class="square range" :class="[index == 0 ? 'first' : '',
+                    <div v-if="item.status" class="square range" :class="[index == 0 ? 'first' : '',
                      index == 1 ? 'second':'',
                      index == 2 ? 'third': '']">{{index+1}}</div>
                 </div>

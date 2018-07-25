@@ -32,6 +32,7 @@ import Fly from "@/utils/fly";
 import HeaderNav from "@/components/headerNav";
 import VideoSection from "@/components/section";
 import search from '@/views/search'
+import { getChannelInfo } from '@/api/getData'
 export default {
   data() {
     return {
@@ -88,29 +89,19 @@ export default {
         url: `../player/main`
       })
     },
-    switchNav(id, index){
+    async switchNav(id, index){
       // 获取切换以后的菜单项
-      // console.log('负组件顺丰')
-      console.log(id);
-      console.log(this.category[index])
-      // this.show = this.category[index].sections
       // 拼接url
-      Fly.get(`/channel/${id}`)
-      .then(res => {
-        // console.log(res.data)
-        this.banners = res.data.banners
-        this.sections = res.data.sections
-        console.log(res.data.banners)
-        console.log(this.sections);
-      })
+      const data =await getChannelInfo(`/channel/${id}`)
+      this.banners = data.banners
+      this.sections = data.sections
     }
   },
-  mounted() {
+  async mounted() {
     // 调用应用实例的方法获取全局数据
-    Fly.get("/channel/dianshiju").then(res => {
-      this.banners = res.data.banners
-      this.sections = res.data.sections
-    })
+   const data = await getChannelInfo(`/channel/dianshiju`)
+      this.banners = data.banners
+      this.sections = data.sections
   }
 };
 </script>
@@ -127,7 +118,6 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  /* background: #f4f6f8; */
   height: 685rpx;
   background: linear-gradient(#fff, #f4f6f8);
 }
